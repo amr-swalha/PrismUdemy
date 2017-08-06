@@ -1,7 +1,7 @@
 ﻿using Prism.Unity;
 using PrismCourseApp.Views;
 using Xamarin.Forms;
-
+using PrismCourseApp.ViewModels;
 namespace PrismCourseApp
 {
     public partial class App : PrismApplication
@@ -19,6 +19,7 @@ namespace PrismCourseApp
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
+            Container.RegisterTypeForNavigation<SecondPage,SecondPageViewModel>("test");
         }
     }
 }

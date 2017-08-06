@@ -9,6 +9,8 @@ namespace PrismCourseApp.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigationAware
     {
+        private INavigationService _navigationService;
+        public DelegateCommand GoToSecond { get; private set; }
         private string _title;
         public string Title
         {
@@ -16,9 +18,10 @@ namespace PrismCourseApp.ViewModels
             set { SetProperty(ref _title, value); }
         }
 
-        public MainPageViewModel()
+        public MainPageViewModel(INavigationService navigationService)
         {
-
+            _navigationService = navigationService;
+            GoToSecond = new DelegateCommand(GoToSecondNavigation);
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)
@@ -35,6 +38,10 @@ namespace PrismCourseApp.ViewModels
         {
             if (parameters.ContainsKey("title"))
                 Title = (string)parameters["title"] + " and Prism";
+        }
+        public void GoToSecondNavigation()
+        {
+            _navigationService.NavigateAsync("test/test/test",null,false,false);
         }
     }
 }
