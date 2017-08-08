@@ -41,7 +41,10 @@ namespace PrismCourseApp.ViewModels
         }
         public void GoToSecondNavigation()
         {
-            _navigationService.NavigateAsync("test/test/test",null,false,false);
+            var par = new NavigationParameters();
+            par.Add("par1", "val1");
+            par.Add("par2", "val2");
+            _navigationService.NavigateAsync("test", par);
         }
     }
 }
