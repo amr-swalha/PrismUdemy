@@ -1,9 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace PrismCourseApp.ViewModels
 {
@@ -44,7 +41,7 @@ namespace PrismCourseApp.ViewModels
             var par = new NavigationParameters();
             par.Add("par1", "val1");
             par.Add("par2", "val2");
-            _navigationService.NavigateAsync("test", par);
+            _navigationService.NavigateAsync("SecondPage", par);
         }
     }
 }

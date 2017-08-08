@@ -19,7 +19,7 @@ namespace PrismCourseApp
         {
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
-            Container.RegisterTypeForNavigation<SecondPage,SecondPageViewModel>("test");
+            Container.RegisterTypeForNavigation<SecondPage,SecondPageViewModel>();
         }
     }
 }
