@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 
 namespace PrismCourseApp.ViewModels
 {
@@ -8,19 +9,33 @@ namespace PrismCourseApp.ViewModels
     {
         private INavigationService _navigationService;
         public DelegateCommand GoToSecond { get; private set; }
+        public DelegateCommand CallMsg { get; private set; }
         private string _title;
         public string Title
         {
             get { return _title; }
             set { SetProperty(ref _title, value); }
         }
+        private bool _isActive = false;
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set { SetProperty(ref _isActive, value); }
+        }
+        public IPageDialogService _dialogService { get; set; }
 
-        public MainPageViewModel(INavigationService navigationService)
+        public MainPageViewModel(INavigationService navigationService,IPageDialogService dialogService)
         {
             _navigationService = navigationService;
-            GoToSecond = new DelegateCommand(GoToSecondNavigation);
+            _dialogService = dialogService;
+            GoToSecond = new DelegateCommand(GoToSecondNavigation).ObservesCanExecute(() => IsActive);
+            CallMsg = new DelegateCommand(ShowMsg);
         }
-
+        public async void ShowMsg()
+        {
+           bool result = await _dialogService.DisplayAlertAsync("Hello", "i'm a msg", "OK!","Cancel :(");
+            result = result;
+        }
         public void OnNavigatedFrom(NavigationParameters parameters)
         {
 

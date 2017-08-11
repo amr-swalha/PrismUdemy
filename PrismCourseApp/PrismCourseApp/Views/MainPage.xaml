@@ -5,8 +5,10 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="PrismCourseApp.Views.MainPage"
              Title="MainPage">
-  <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-    <Label Text="{Binding Title}" />
+    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+        <Label Text="{Binding Title}" />
+        <Switch IsToggled="{Binding IsActive}"></Switch>
         <Button Text="Go to second page" Command="{Binding GoToSecond}"></Button>
-  </StackLayout>
+        <Button Text="Show MSg" Command="{Binding CallMsg}"></Button>
+    </StackLayout>
 </ContentPage>
