@@ -10,6 +10,14 @@ namespace PrismCourseApp.ViewModels
         private INavigationService _navigationService;
         public DelegateCommand GoToSecond { get; private set; }
         public DelegateCommand CallMsg { get; private set; }
+        public DelegateCommand GoToAPI { get; private set; }
+        public DelegateCommand DisplayActionSheet { get; private set; }
+        private string _CityName;
+        public string CityName
+        {
+            get { return _CityName; }
+            set { SetProperty(ref _CityName, value); }
+        }
         private string _title;
         public string Title
         {
@@ -30,6 +38,17 @@ namespace PrismCourseApp.ViewModels
             _dialogService = dialogService;
             GoToSecond = new DelegateCommand(GoToSecondNavigation).ObservesCanExecute(() => IsActive);
             CallMsg = new DelegateCommand(ShowMsg);
+            DisplayActionSheet = new DelegateCommand(ShowActionSheet);
+            GoToAPI = new DelegateCommand(NavigateToAPI);
+        }
+        public void NavigateToAPI()
+        {
+            _navigationService.NavigateAsync($"APIPage?city={CityName}");
+        }
+        public async void ShowActionSheet()
+        {
+           string result = await _dialogService.DisplayActionSheetAsync("I'm Action Sheet", "Cancel", null, "action 1", "action 2", "action 3", "action 4");
+            result = result;
         }
         public async void ShowMsg()
         {

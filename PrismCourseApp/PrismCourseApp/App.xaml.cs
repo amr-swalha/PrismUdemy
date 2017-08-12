@@ -2,6 +2,9 @@
 using PrismCourseApp.Views;
 using Xamarin.Forms;
 using PrismCourseApp.ViewModels;
+using PrismCourseApp.API;
+using Microsoft.Practices.Unity;
+
 namespace PrismCourseApp
 {
     public partial class App : PrismApplication
@@ -20,6 +23,7 @@ namespace PrismCourseApp
             Container.RegisterTypeForNavigation<NavigationPage>();
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<SecondPage,SecondPageViewModel>();
+            Container.RegisterTypeForNavigation<APIPage>();
         }
     }
 }

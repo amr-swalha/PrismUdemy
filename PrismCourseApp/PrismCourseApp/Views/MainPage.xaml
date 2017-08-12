@@ -6,9 +6,11 @@
              x:Class="PrismCourseApp.Views.MainPage"
              Title="MainPage">
     <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-        <Label Text="{Binding Title}" />
+        <Entry Text="{Binding CityName}"></Entry>
+        <Button Text="Go to API" Command="{Binding GoToAPI}"></Button>
         <Switch IsToggled="{Binding IsActive}"></Switch>
         <Button Text="Go to second page" Command="{Binding GoToSecond}"></Button>
         <Button Text="Show MSg" Command="{Binding CallMsg}"></Button>
+        <Button Text="Show Action Sheet" Command="{Binding DisplayActionSheet}"></Button>
     </StackLayout>
 </ContentPage>
