@@ -12,5 +12,6 @@
         <Button Text="Go to second page" Command="{Binding GoToSecond}"></Button>
         <Button Text="Show MSg" Command="{Binding CallMsg}"></Button>
         <Button Text="Show Action Sheet" Command="{Binding DisplayActionSheet}"></Button>
+        <Button Text="Go To Depedency Page" Command="{Binding GoDs}"></Button>
     </StackLayout>
 </ContentPage>

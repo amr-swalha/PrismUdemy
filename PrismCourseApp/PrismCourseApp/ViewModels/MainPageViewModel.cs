@@ -12,6 +12,7 @@ namespace PrismCourseApp.ViewModels
         public DelegateCommand CallMsg { get; private set; }
         public DelegateCommand GoToAPI { get; private set; }
         public DelegateCommand DisplayActionSheet { get; private set; }
+        public DelegateCommand GoDs { get; private set; }
         private string _CityName;
         public string CityName
         {
@@ -40,10 +41,15 @@ namespace PrismCourseApp.ViewModels
             CallMsg = new DelegateCommand(ShowMsg);
             DisplayActionSheet = new DelegateCommand(ShowActionSheet);
             GoToAPI = new DelegateCommand(NavigateToAPI);
+            GoDs = new DelegateCommand(GoDsNavigate);
         }
         public void NavigateToAPI()
         {
             _navigationService.NavigateAsync($"APIPage?city={CityName}");
+        }
+        public void GoDsNavigate()
+        {
+            _navigationService.NavigateAsync($"DsPage");
         }
         public async void ShowActionSheet()
         {

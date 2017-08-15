@@ -36,11 +36,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="API\APIHandler.cs" />
+    <Compile Include="IPrismService.cs" />
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\APIPageViewModel.cs" />
+    <Compile Include="ViewModels\DsPageViewModel.cs" />
     <Compile Include="Views\APIPage.xaml.cs">
       <DependentUpon>APIPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DsPage.xaml.cs">
+      <DependentUpon>DsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SecondPage.xaml.cs">
       <DependentUpon>SecondPage.xaml</DependentUpon>
@@ -115,6 +120,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\APIPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -24,6 +24,7 @@ namespace PrismCourseApp
             Container.RegisterTypeForNavigation<MainPage>();
             Container.RegisterTypeForNavigation<SecondPage,SecondPageViewModel>();
             Container.RegisterTypeForNavigation<APIPage>();
+            Container.RegisterTypeForNavigation<DsPage>();
         }
     }
 }
