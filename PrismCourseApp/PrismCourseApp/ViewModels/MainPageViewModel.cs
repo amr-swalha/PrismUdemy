@@ -2,13 +2,19 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
+using Prism.Events;
+using System;
+using PrismCourseApp.Events;
 
 namespace PrismCourseApp.ViewModels
 {
     public class MainPageViewModel : BindableBase, INavigationAware
     {
+        public IEventAggregator _eventAggregator;
         private INavigationService _navigationService;
         public DelegateCommand GoToSecond { get; private set; }
+        public DelegateCommand UnSubscribeEvent { get; private set; }
+        public DelegateCommand SubscribeEvent { get; private set; }
         public DelegateCommand CallMsg { get; private set; }
         public DelegateCommand GoToAPI { get; private set; }
         public DelegateCommand DisplayActionSheet { get; private set; }
@@ -32,9 +38,11 @@ namespace PrismCourseApp.ViewModels
             set { SetProperty(ref _isActive, value); }
         }
         public IPageDialogService _dialogService { get; set; }
-
-        public MainPageViewModel(INavigationService navigationService,IPageDialogService dialogService)
+        public MainPageViewModel(INavigationService navigationService,
+            IPageDialogService dialogService,
+            IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
             _navigationService = navigationService;
             _dialogService = dialogService;
             GoToSecond = new DelegateCommand(GoToSecondNavigation).ObservesCanExecute(() => IsActive);
@@ -42,7 +50,26 @@ namespace PrismCourseApp.ViewModels
             DisplayActionSheet = new DelegateCommand(ShowActionSheet);
             GoToAPI = new DelegateCommand(NavigateToAPI);
             GoDs = new DelegateCommand(GoDsNavigate);
+            UnSubscribeEvent = new DelegateCommand(UnSubScribeFromEvent);
+            SubscribeEvent = new DelegateCommand(SubscribeToEvent);
         }
+
+        private void SubscribeToEvent()
+        {
+            _eventAggregator.GetEvent<EventPub>().Subscribe(ChangeCityName);
+        }
+
+        private void UnSubScribeFromEvent()
+        {
+            _eventAggregator.GetEvent<EventPub>().Unsubscribe(ChangeCityName);
+        }
+
+        private void ChangeCityName(string obj)
+        {
+
+            CityName = obj;
+        }
+
         public void NavigateToAPI()
         {
             _navigationService.NavigateAsync($"APIPage?city={CityName}");

@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="API\APIHandler.cs" />
+    <Compile Include="EventSub.cs" />
+    <Compile Include="Events\EventPub.cs" />
     <Compile Include="IPrismService.cs" />
     <Compile Include="Models\Entities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
