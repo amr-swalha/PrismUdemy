@@ -5,10 +5,11 @@ using Prism.Services;
 using Prism.Events;
 using System;
 using PrismCourseApp.Events;
+using System.Threading.Tasks;
 
 namespace PrismCourseApp.ViewModels
 {
-    public class MainPageViewModel : BindableBase, INavigationAware
+    public class MainPageViewModel : BindableBase, INavigationAware,IConfirmNavigationAsync
     {
         public IEventAggregator _eventAggregator;
         private INavigationService _navigationService;
@@ -109,6 +110,11 @@ namespace PrismCourseApp.ViewModels
             par.Add("par1", "val1");
             par.Add("par2", "val2");
             _navigationService.NavigateAsync("SecondPage", par);
+        }
+
+        public Task<bool> CanNavigateAsync(NavigationParameters parameters)
+        {
+            return _dialogService.DisplayAlertAsync("Going Away", "Are you sure", "Yes", "No");
         }
     }
 }
